@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apology with Falling Hearts</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #ff0000, #000000) ;
+        }
+
+        p{
+            font-size: 3em;
+            font-family: 'Pacifico', cursive;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                          0 0 20px rgba(255, 255, 255, 0.8),
+                          0 0 30px rgba(255, 255, 255, 0.8),
+                          0 0 40px rgba(255, 255, 255, 0.8);
+
+                          cursor: pointer;
+            transition: color 0.5s;
+        }
+
+        #sorryContainer {
+            text-align: center;
+            font-family: 'Cursive', sans-serif;
+            font-size: 24px;
+            color: #333;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        .heart {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #e44d26;
+            clip-path: polygon(
+                50% 0%,
+                100% 35%,
+                75% 100%,
+                50% 75%,
+                25% 100%,
+                0% 35%
+            );
+            animation: fall 2s infinite linear;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .heart-beat {
+            animation: heartbeat 0.8s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div id="sorryContainer">
+        <p>I'm sorry if I've caused any pain. Please forgive me.</p>
+    </div>
+
+    <script>
+        // Add falling hearts dynamically
+        document.addEventListener('DOMContentLoaded', function () {
+            const heartContainer = document.body;
+
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.animationDuration = `${Math.random() * 1 + 2}s`;
+                heartContainer.appendChild(heart);
+            }
+        });
+
+        function changeToHeart() {
+            var messageElement = document.querySelector('p');
+            messageElement.innerHTML = '❤️';
+            messageElement.style.color = '#e44d26'; // Adjust the color as needed
+            messageElement.style.textShadow = 'none'; // Remove text-shadow
+            messageElement.classList.add('heart-beat');
+        }
+
+        // Add event listener to change message on any click
+        document.addEventListener('click', changeToHeart);
+    </script>
+</body>
+</html>
