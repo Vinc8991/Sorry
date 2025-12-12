@@ -3,47 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apology with Falling Hearts</title>
+    <title>I'm Sorry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             height: 100vh;
-            background: linear-gradient(to bottom, #ff0000, #000000) ;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        p{
-            font-size: 3em;
-            font-family: 'Pacifico', cursive;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
-                          0 0 20px rgba(255, 255, 255, 0.8),
-                          0 0 30px rgba(255, 255, 255, 0.8),
-                          0 0 40px rgba(255, 255, 255, 0.8);
-
-                          cursor: pointer;
-            transition: color 0.5s;
-        }
-
-        #sorryContainer {
+        .container {
             text-align: center;
-            font-family: 'Cursive', sans-serif;
-            font-size: 24px;
-            color: #333;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+            max-width: 700px;
+            animation: fadeIn 1.5s ease-in;
+            position: relative;
             z-index: 2;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5em;
+            color: #667eea;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(102, 126, 234, 0.6),
+                         0 0 30px rgba(102, 126, 234, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.5s;
+        }
+
+        h1:hover {
+            color: #764ba2;
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .heart-icon {
+            font-size: 5em;
+            color: #ff6b6b;
+            margin: 20px 0;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.3);
+            }
+            50% {
+                transform: scale(1);
+            }
+        }
+
+        p {
+            font-size: 1.3em;
+            color: #555;
+            line-height: 1.8;
+            margin: 20px 0;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .message {
+            font-style: italic;
+            color: #764ba2;
+            font-size: 1.2em;
+            margin-top: 30px;
+            font-weight: bold;
+        }
+
+        .flowers {
+            font-size: 2.5em;
+            margin-top: 20px;
+            animation: sway 3s ease-in-out infinite;
+        }
+
+        @keyframes sway {
+            0%, 100% {
+                transform: rotate(-5deg);
+            }
+            50% {
+                transform: rotate(5deg);
+            }
         }
 
         .heart {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #e44d26;
+            width: 20px;
+            height: 20px;
+            background-color: #ff6b6b;
             clip-path: polygon(
                 50% 0%,
                 100% 35%,
@@ -52,58 +149,119 @@
                 25% 100%,
                 0% 35%
             );
-            animation: fall 2s infinite linear;
+            animation: fall linear infinite;
+            opacity: 0.8;
+            z-index: 1;
         }
 
         @keyframes fall {
             0% {
-                transform: translateY(0) rotate(0deg);
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 0.8;
             }
             100% {
-                transform: translateY(100vh) rotate(360deg);
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
             }
         }
 
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        .click-hint {
+            font-size: 0.9em;
+            color: #999;
+            margin-top: 20px;
+            animation: blink 2s ease-in-out infinite;
         }
 
-        .heart-beat {
-            animation: heartbeat 0.8s infinite;
+        @keyframes blink {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .transformed {
+            font-size: 8em !important;
+            animation: heartbeat 0.8s infinite, rotate 2s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg) scale(1);
+            }
+            50% {
+                transform: rotate(180deg) scale(1.2);
+            }
+            100% {
+                transform: rotate(360deg) scale(1);
+            }
         }
     </style>
 </head>
 <body>
-    <div id="sorryContainer">
-        <p>I'm sorry if I've caused any pain. Please forgive me.</p>
+    <div class="container">
+        <h1 id="mainTitle">I'm So Sorry</h1>
+        <div class="heart-icon">❤️</div>
+        <p>I know I messed up, and I truly regret hurting you.</p>
+        <p>You mean the world to me, and I never want to make you feel this way again.</p>
+        <p>Please forgive me. I promise to do better.</p>
+        <div class="flowers">🌹🌸🌺🌻🌷</div>
+        <p class="message">With all my heart ❤️</p>
+        <p class="click-hint">✨ Click anywhere for a surprise ✨</p>
     </div>
 
     <script>
-        // Add falling hearts dynamically
+        // Create falling hearts
         document.addEventListener('DOMContentLoaded', function () {
-            const heartContainer = document.body;
-
-            for (let i = 0; i < 20; i++) {
+            const body = document.body;
+            
+            function createHeart() {
                 const heart = document.createElement('div');
                 heart.className = 'heart';
                 heart.style.left = `${Math.random() * 100}vw`;
-                heart.style.animationDuration = `${Math.random() * 1 + 2}s`;
-                heartContainer.appendChild(heart);
+                heart.style.animationDuration = `${Math.random() * 4 + 4}s`;
+                const size = Math.random() * 15 + 10;
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+                body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 8500);
             }
+            
+            // Create initial hearts to fill the screen
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => createHeart(), i * 100);
+            }
+            
+            // Keep creating hearts consistently
+            setInterval(createHeart, 200);
         });
 
-        function changeToHeart() {
-            var messageElement = document.querySelector('p');
-            messageElement.innerHTML = '❤️';
-            messageElement.style.color = '#e44d26'; // Adjust the color as needed
-            messageElement.style.textShadow = 'none'; // Remove text-shadow
-            messageElement.classList.add('heart-beat');
-        }
-
-        // Add event listener to change message on any click
-        document.addEventListener('click', changeToHeart);
+        // Transform on click
+        let clicked = false;
+        document.addEventListener('click', function() {
+            if (!clicked) {
+                const container = document.querySelector('.container');
+                const title = document.getElementById('mainTitle');
+                
+                container.innerHTML = '<div class="heart-icon transformed">❤️</div>';
+                clicked = true;
+                
+                // Create burst of hearts
+                for (let i = 0; i < 50; i++) {
+                    setTimeout(() => {
+                        const heart = document.createElement('div');
+                        heart.className = 'heart';
+                        heart.style.left = `${Math.random() * 100}vw`;
+                        heart.style.animationDuration = `${Math.random() * 2 + 2}s`;
+                        document.body.appendChild(heart);
+                    }, i * 50);
+                }
+            }
+        });
     </script>
 </body>
 </html>
